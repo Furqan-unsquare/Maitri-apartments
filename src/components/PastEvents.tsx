@@ -17,13 +17,9 @@ const PastEvents = () => {
 
   // Define custom names for each event folder here
   const EVENT_NAMES: Record<string, string> = {
-    'event1': 'Annual Conference 2023',
-    'event2': 'Developer Workshop',
-    'event3': 'Community Meetup',
-    'event4': 'Tech Summit',
-    'event5': 'Hackathon 2024',
-    'event6': 'Innovation Day',
-    'event7': 'Networking Event',
+    'event1': 'Environment Day',
+    'event2': 'Republic Day',
+    'event3': 'Yoga Day',
   };
 
   useEffect(() => {
