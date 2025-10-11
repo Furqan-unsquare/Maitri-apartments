@@ -16,7 +16,7 @@ const membershipDocuments = [
 // PDF files in public folder
 const membershipPDFs = [
   { name: "Membership Form", file: "/rcs_form_20.pdf" },
-  { name: "Society Rules Form", file: "/rcs_form_21.pdf" },
+  { name: "Affidavit Form", file: "/rcs_form_21.pdf" },
 ];
 
 const MembershipDocuments = () => {
