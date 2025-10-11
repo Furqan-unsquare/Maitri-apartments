@@ -50,10 +50,7 @@ const Navigation = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between py-4">
           <a href="/">
-            <div className="text-xl font-bold text-foreground">
-              <div>Maitri</div>
-              <div className="text-sm font-normal">Apartments RWA</div>
-            </div>
+            <img src="/logo.png" className="w-28" alt="" />
           </a>
 
           {/* Desktop Menu */}
