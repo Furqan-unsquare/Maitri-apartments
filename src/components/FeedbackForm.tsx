@@ -14,10 +14,23 @@ const FeedbackForm = () => {
     email: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    toast.success("Feedback submitted successfully!");
-    setFormData({ fullName: "", subject: "", message: "", email: "" });
+  // Function to open Gmail with pre-filled content
+  const handleSendEmail = () => {
+    if (!formData.email || !formData.subject || !formData.message) {
+      toast.error("Please fill in all required fields!");
+      return;
+    }
+
+    const recipient = "Maitriapartmentpv@gmail.com"; // RWA email
+    const subject = encodeURIComponent(formData.subject);
+    const body = encodeURIComponent(
+      `Name: ${formData.fullName}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+    );
+
+    // Gmail compose link
+    const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=${recipient}&su=${subject}&body=${body}`;
+
+    window.open(gmailLink, "_blank");
   };
 
   const handleReset = () => {
@@ -27,13 +40,15 @@ const FeedbackForm = () => {
   return (
     <section id="feedback" className="py-12 bg-background">
       <div className="container mx-auto px-4">
-        <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-2">Feedback Form</h2>
+        <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
+          Feedback Form
+        </h2>
         <p className="text-muted-foreground mb-8">
           Share your suggestions or concerns with the RWA.
         </p>
 
         <Card className="p-6 md:p-8 max-w-2xl">
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
             <div className="grid md:grid-cols-2 gap-6">
               <div className="space-y-2">
                 <Label htmlFor="fullName">Full Name</Label>
@@ -41,7 +56,9 @@ const FeedbackForm = () => {
                   id="fullName"
                   placeholder="Enter your name"
                   value={formData.fullName}
-                  onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, fullName: e.target.value })
+                  }
                   required
                 />
               </div>
@@ -52,7 +69,9 @@ const FeedbackForm = () => {
                   id="subject"
                   placeholder="Suggestion or Concern"
                   value={formData.subject}
-                  onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, subject: e.target.value })
+                  }
                   required
                 />
               </div>
@@ -65,7 +84,9 @@ const FeedbackForm = () => {
                 placeholder="Write your message"
                 rows={5}
                 value={formData.message}
-                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, message: e.target.value })
+                }
                 required
               />
             </div>
@@ -77,14 +98,16 @@ const FeedbackForm = () => {
                 type="email"
                 placeholder="name@example.com"
                 value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, email: e.target.value })
+                }
                 required
               />
             </div>
 
             <div className="flex gap-4">
-              <Button type="submit" variant="success">
-                Submit
+              <Button type="button" variant="success" onClick={handleSendEmail}>
+                Send Email
               </Button>
               <Button type="button" variant="outline" onClick={handleReset}>
                 Reset
