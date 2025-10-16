@@ -86,6 +86,12 @@ const Navigation = () => {
         {/* Mobile Menu */}
         {mobileMenuOpen && (
           <div className="lg:hidden pb-4 space-y-2">
+             <a
+              href="/about"
+              className="text-sm text-foreground px-4 py-2 hover:text-primary transition-colors"
+            >
+              About us
+            </a>
             {menuItems.map((item) => (
               <button
                 key={item}
